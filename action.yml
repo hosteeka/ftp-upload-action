@@ -2,6 +2,9 @@ name: 'FTP Upload'
 author: 'Hosteeka'
 description: 'Upload files to FTP server'
 inputs:
+  githubToken:
+    description: 'GitHub token'
+    required: true
   host:
     description: 'FTP server host'
     required: true
