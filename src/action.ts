@@ -4,6 +4,21 @@ import * as github from '@actions/github';
 export async function run(): Promise<void> {
   try {
     const token = core.getInput('githubToken', { required: true });
+    const host = core.getInput('host', { required: true });
+    const username = core.getInput('username', { required: true });
+    const password = core.getInput('password', { required: true });
+    const port = parseInt(core.getInput('port'));
+    const protocol = core.getInput('protocol');
+    const definedPaths = core.getMultilineInput('paths');
+
+    // Validate inputs
+
+    if (protocol !== 'ftp' && protocol !== 'ftps') {
+      core.setFailed('The protocol must be ftp or ftps.');
+      return;
+    }
+
+    core.info(`Paths: ${definedPaths}`);
 
     const { eventName, repo } = github.context;
 
@@ -54,6 +69,10 @@ export async function run(): Promise<void> {
     if (data.status !== 'ahead') {
       core.info(`The head commit is ${data.status} of the base commit.`);
       return;
+    }
+
+    for (const file of data.files ?? []) {
+      core.info(`File: ${file.filename}`);
     }
   } catch (error) {
     core.setFailed(error);
