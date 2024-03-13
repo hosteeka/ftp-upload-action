@@ -31,6 +31,9 @@ export async function run(): Promise<void> {
 
     core.info(`Base commit: ${base}`);
     core.info(`Head commit: ${head}`);
+
+    const paths = core.getMultilineInput('paths');
+    core.info(`Paths: ${paths}`);
   } catch (error) {
     core.setFailed(error);
   }

@@ -16,9 +16,13 @@ inputs:
     required: false
     default: 21
   protocol:
-    description: 'FTP server protocol (ftp or sftp)'
+    description: 'FTP server protocol (ftp or ftps)'
     required: false
     default: 'ftp'
+  paths:
+    description: 'Files/Folders to upload'
+    required: false
+    default: '.'
 runs:
   using: 'node20'
   main: 'dist/index.js'
