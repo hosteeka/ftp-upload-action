@@ -1,0 +1,14 @@
+name: FTP Upload Test
+on:
+  push:
+    branches:
+      - main
+jobs:
+  upload-ftp:
+    name: Upload using FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Upload
+        uses: ./
