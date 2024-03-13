@@ -13,6 +13,7 @@ jobs:
       - name: Upload
         uses: ./
         with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
           host: ${{ secrets.INFINITYFREE_FTP_HOST }}
           username: ${{ secrets.INFINITYFREE_FTP_USERNAME }}
           password: ${{ secrets.INFINITYFREE_FTP_PASSWORD }}
