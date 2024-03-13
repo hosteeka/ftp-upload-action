@@ -39,6 +39,22 @@ export async function run(): Promise<void> {
     // Compare the two commits to get the list of files that changed.
 
     const octokit = github.getOctokit(token);
+
+    const { data, status } = await octokit.rest.repos.compareCommits({
+      ...repo,
+      base,
+      head
+    });
+
+    if (status !== 200) {
+      core.setFailed('Could not get comparison between commits.');
+      return;
+    }
+
+    if (data.status !== 'ahead') {
+      core.info(`The head commit is ${data.status} of the base commit.`);
+      return;
+    }
   } catch (error) {
     core.setFailed(error);
   }
