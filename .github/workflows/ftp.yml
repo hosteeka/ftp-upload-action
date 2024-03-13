@@ -17,6 +17,3 @@ jobs:
           host: ${{ secrets.INFINITYFREE_FTP_HOST }}
           username: ${{ secrets.INFINITYFREE_FTP_USERNAME }}
           password: ${{ secrets.INFINITYFREE_FTP_PASSWORD }}
-          paths: |
-            files /files
-            index.html /htdocs
