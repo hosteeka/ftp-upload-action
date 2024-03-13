@@ -1,0 +1,27 @@
+name: 'FTP Upload'
+author: 'Hosteeka'
+description: 'Upload files to FTP server'
+inputs:
+  host:
+    description: 'FTP server host'
+    required: true
+  username:
+    description: 'FTP server username'
+    required: true
+  password:
+    description: 'FTP server password'
+    required: true
+  port:
+    description: 'FTP server port'
+    required: false
+    default: 21
+  protocol:
+    description: 'FTP server protocol (ftp or sftp)'
+    required: false
+    default: 'ftp'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'upload-cloud'
+  color: 'purple'
