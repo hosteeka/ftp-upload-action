@@ -1,5 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { FTPClient } from './ftp';
+import { type Client, type PathOptions } from './types';
 
 export async function run(): Promise<void> {
   try {
@@ -71,9 +73,25 @@ export async function run(): Promise<void> {
       return;
     }
 
+    const paths: PathOptions[] = [];
     for (const file of data.files ?? []) {
-      core.info(`File: ${file.filename}`);
+      if (file.status === 'modified') {
+        paths.push({
+          source: file.filename,
+          target: file.filename
+        });
+      }
     }
+
+    const client: Client = new FTPClient(
+      host,
+      username,
+      password,
+      port,
+      protocol
+    );
+
+    client.syncToServer(paths);
   } catch (error) {
     core.setFailed(error);
   }
