@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import ftp from 'basic-ftp';
+import * as ftp from 'basic-ftp';
 import { type Client, type PathOptions } from './types';
 
 export class FTPClient implements Client {
