@@ -25,6 +25,7 @@ export class FTPClient implements Client {
 
   async syncToServer(options: PathOptions[]): Promise<void> {
     for (const { source, target } of options) {
+      core.debug(`Uploading ${source} to ${target}`);
       await this.client.uploadFrom(source, target);
     }
   }
