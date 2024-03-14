@@ -11,7 +11,6 @@ export async function run(): Promise<void> {
     const password = core.getInput('password', { required: true });
     const port = parseInt(core.getInput('port'));
     const protocol = core.getInput('protocol');
-    const definedPaths = core.getMultilineInput('paths');
 
     // Validate inputs
 
@@ -19,8 +18,6 @@ export async function run(): Promise<void> {
       core.setFailed('The protocol must be ftp or ftps.');
       return;
     }
-
-    core.info(`Paths: ${definedPaths}`);
 
     const { eventName, repo } = github.context;
 

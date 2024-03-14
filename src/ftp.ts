@@ -1,3 +1,4 @@
+import * as core from '@actions/core';
 import ftp from 'basic-ftp';
 import { type Client, type PathOptions } from './types';
 
@@ -11,6 +12,7 @@ export class FTPClient implements Client {
     port: number = 21,
     protocol: 'ftp' | 'ftps' = 'ftp'
   ) {
+    core.debug(`Creating FTP client`);
     this.client = new ftp.Client();
     this.client.access({
       host,
