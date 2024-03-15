@@ -88,7 +88,7 @@ export async function run(): Promise<void> {
       protocol
     );
 
-    client.syncToServer(paths);
+    await client.syncToServer(paths);
   } catch (error) {
     core.setFailed(error);
   }
